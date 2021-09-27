@@ -1,0 +1,514 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+  <title>How Does GPS Work? | NASA Space Place – NASA Science for Kids</title>
+  <meta name="description" content="Space Place in a Snap explains how your phone knows where to look for pizza.">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="p:domain_verify" content="6118cfa3a4def878b65ea2c155a245fc"/>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/css/all-styles.css?v=24">
+  <link rel="stylesheet" href="/css/css/people-and-technology.css?v=5">
+  <link rel="stylesheet" type="text/css" href="/js/plugins/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="/js/plugins/slick/slick-theme.css"/>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <script src="/js/libs/modernizr-2.6.2.min-ck.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <script src="/js/libs/jquery-ui-1.8.13.custom.min.js"></script>
+  <script src="/js/libs/jquery.beforeafter-1.4.min.js"></script>
+  <script src="/js/features.js?v=1"></script>
+  <script src="/js/plugins/slick/slick.min.js"></script>
+  <script src="//script.crazyegg.com/pages/scripts/0070/1109.js" async="async"></script>
+  
+  <!--<script type="text/javascript" src="/js/uncompressed/federated-analytics.js"></script>-->
+
+  <script>!window.jQuery && document.write('<script src="/js/jquery-1.4.2.min-ck.js"><\/script>')</script>
+  
+</head>
+
+<body class ="people-and-technology en">
+
+<!--[if lt IE 8]>
+    <link rel = "stylesheet" href = "/css/css/ie7.css"/>
+<![endif\-->
+
+<!--[if lt IE 7]>
+    <div class = "outdated-browser-warning">
+        <p>
+            You are using an outdated browser.  For a faster, safer, and more beautiful web upgrade for free today.
+            <a href = "http://www.apple.com/safari/" target="_blank"><img src = "/resources/icons/safari-logo.png" alt = "safari logo"></a>
+            <a href = "http://www.mozilla.com/en-US/firefox/" target="_blank"><img src = "/resources/icons/firefox-logo.png" alt = "firefox logo"></a>
+            <a href = "http://chrome.google.com" target="_blank"><img src = "/resources/icons/chrome-logo.png" alt = "google chrome logo"></a>
+        </p>
+    </div>
+<![endif]-->
+
+<div id="container" class ="container">
+
+
+    <div style = "display:none;" id = "page-uri-holder">gps-pizza</div>
+    <div class = "tooltip">
+        <span class = "content"></span>
+        <div class = "tooltip-tip"></div>
+    </div><header id = "nasa-header">
+    <a href = "https://www.nasa.gov" target = "_blank">
+        <img id = "nasa-logo" src = "/resources/homepage/nasa.png" alt="Link to nasa.gov">
+    </a>
+    <!--<a href = "https://science.nasa.gov" target = "_blank">
+        <img id = "nasa-science-logo" src = "/resources/homepage/nasa-science-logo.png">
+    </a>-->
+    <div id="site-logo-holder">
+	    <a href = "https://science.nasa.gov" target = "_blank">
+	        <img id = "nasa-science-logo" src = "/resources/homepage/nasa-science-logo-horizontal.png" alt="Link to science.nasa.gov.">
+	    </a>
+	    <a href = "/">
+	        <img src="/resources/homepage/logo.png" id="spaceplace-text" alt="Image that reads Space Place and links to spaceplace.nasa.gov."/>
+	    </a>
+    </div>
+    <div id = "search-bar">
+                <form id = "search-form" action = "/search/" method="get">
+            <input type = "search" id = "search-input" class = "search-input" name = "search"  aria-label="Search">
+            <img src = "/resources/homepage/search-button.png" alt="Search button.">
+        </form>
+    </div>
+    <div class = "clearfix"></div>
+</header>
+<header>
+    
+    
+    <div class = "clearfix"></div>
+    <nav class = "category-nav">
+	    
+	    <a href = "/menu/earth/" class = "navItem"><img src="/resources/homepage/nav_earth.png" class="navIcon" alt="Illustration of Earth that links to the Space Place Earth menu."/><div class="navText">Earth</div></a>
+	    <a href = "/menu/sun/" class = "navItem"><img src="/resources/homepage/nav_sun.png" class="navIcon" alt="Illustration of the Sun that links to the Space Place Sun menu."/><div class="navText">Sun</div></a>
+	    <a href = "/menu/solar-system/" class = "navItem"><img src="/resources/homepage/nav_solarsystem.png" class="navIcon" alt="Illustration of Saturn that links to the Space Place Solar System menu."/><div class="navText">Solar System</div></a>
+	    <a href = "/menu/space/" class = "navItem"><img src="/resources/homepage/nav_space.png" class="navIcon" alt="Illustration of a galaxy that links to the Space Place Universe menu."/><div class="navText">Universe</div></a>
+	    <a href = "/menu/science-and-technology/" class = "navItem"><img src="/resources/homepage/nav_science.png" class="navIcon" alt="Illustration of a spacecraft that links to the Space Place Science and Tech menu."/><div class="navText">Science and Tech</div></a>
+	    <a href = "/menu/parents-and-educators/" class = "navItem"><img src="/resources/homepage/nav_educators.png" class="navIcon" alt="Illustration of an apple that links to the Space Place Educators menu."><div class="navText">Educators</div></a>
+        
+    </nav>
+    <div class = "clearfix"></div>
+</header>
+    
+<div id = 'mission-tags'></div>
+
+<style type = "text/css">
+    #share-links{
+        position:absolute;
+        right:30px;
+        bottom:5px;
+    }
+    #share-links.long-title{
+        bottom:-28px;
+    }
+    #share-links div{
+        width:20px;
+        height:20px;
+        float:left;
+        margin-left:4px;
+        position:relative;
+    }
+
+    #share-links div.label{
+        width:30px;
+        color:black;
+        font-size:12px;
+        height:20px;
+        line-height:20px;
+        font-weight:bold;
+    }
+
+    #google-share{
+        width:32px !important;
+    }
+    #facebook-share{
+        width:55px !important;
+        margin-top:-5px;
+    }
+    #twitter-share{
+        background:url(/resources/icons/twitter.en.png);
+        text-indent:-10000px;
+        overflow:hidden;
+    }
+    #twitter-share a,
+    #facebook-share a{
+        position:absolute;
+        top:0;
+        left:0;
+        width:20px;
+        height:20px;
+    }
+    #email-share{
+        background:url(/resources/icons/email.en.png);
+    }
+
+</style>
+
+<div id = "content-wrapper">
+
+    <div id = "main">
+        <div class = "title">
+            <h1 style="font-size:16pt !important; margin-top:-5px; color:black !important;">How Does GPS Work?</h1>
+        </div>
+        <div class = "content">
+            <script type="text/javascript">
+	var transcriptHeight;
+	var open = false;
+
+	$(document).ready(function(){
+		transcriptHeight = $(".transcript").height();
+		$(".transcript").height(0);
+		
+		$("#expandTranscript").click(function(){
+			if(open == false){
+				open = true;
+				$(".transcript").stop();
+				$(".transcript").animate({height:transcriptHeight}, 500);
+			}else{
+				open = false;
+				$(".transcript").stop();
+				$(".transcript").animate({height:0}, 500);
+			}
+		});
+	});
+</script>
+
+<style>
+	.transcript{
+		overflow:hidden;
+	}
+	
+	#expandTranscript{
+		cursor:pointer;
+	}
+</style>
+
+<span class="standardFontSize"> 
+
+<div class="YTVideoWrapper">
+	<iframe src="https://www.youtube.com/embed/RSA3feQ9gKk?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<br>
+<div class = "image-with-caption-padded right">
+<a href = "/review/gps-pizza/infographic.en.png" class = "lightbox"><img src = "/review/gps-pizza/infographic.en.png" width = "200 " alt = "thumbnail of infographic available for download."></a>
+</div>
+
+<br>
+
+
+
+<h3 class="Quicksand">Download a poster of this animation!</h3>
+<h3 class="Quicksand"><a href = "/review/gps-pizza/gps-pizza-8.5x11.pdf">8.5 x 11 inches</a></h3>
+<h3 class="Quicksand"><a href = "/review/gps-pizza/gps-pizza-11x17.pdf">11 x 17 inches</a></h3>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<h3 class="Quicksand" id="expandTranscript"> Click here to read a transcript of this story</h3>
+
+<div class = "transcript">
+
+<p>It’s Friday night and you want some pizza. Fast. But somebody is going to have to pick that pizza up, and that means they need to know how to get to the closest pizzeria.</p> 
+
+<p>In this modern world that is no problem! Just plug ‘pizza’ into a smartphone and it tells you exactly how to get there.</p> 
+
+<p>But how exactly does the phone know where you are?</p> 
+
+<p>Something called a Global Positioning System, or GPS, tells you, that’s how.</p> 
+
+<p>When your phone tells you where you are, it may actually be listening to signals from satellites high up in space.  There are over 30 satellites used for GPS, orbiting over 16,000 miles (26,000km) above the Earth!</p>
+
+<p>Your phone just needs to figure out how far away you are from some of them.</p> 
+
+<p>If your phone knows how far away it is from four satellites, then there is only one place on Earth you can be!</p>
+
+<p>Your phone, or any device with a GPS, is programmed to know where all the satellites are at any given time.</p> 
+
+<p>The phone uses that information—along with the amount of time the signal took to reach it—to figure out how far away the satellites are. By doing that, it computes its location.</p> 
+
+<p>So when you search for the nearest pizza place in your smartphone, this is what your phone is thinking:</p>
+
+<p>“What satellites are talking to me right now?<br>
+Hey there, satellites! I know you guys! And I know where you are in the sky right now, too!<br>
+Let me listen to your signal to figure out how far away I am from each of you…<br>
+Oh! I must be right here! There’s no other place that is the right distance away from each of you!<br>
+OK, let me check the internet to see what pizza places are near me…”</p>
+
+<p>And all that happens in an instant. Good thing, too. You’re only getting hungrier.</p> 
+
+
+</div>
+
+<br>
+<h3>Related Resources for Educators</h3>
+<p>
+	<a href="https://nasaeclips.arc.nasa.gov/video/launchpad/launchpad-how-global-positioning-system-works" target="_blank">Launchpad:  How Global Positioning System Works</a>
+</p>
+
+</span>
+        </div>
+        <div class="footerArticleUpdated">
+        	article last updated March 26, 2020
+        </div>
+    </div>
+
+
+
+    <style type = "text/css">
+        #similar{
+            float:left;
+            clear:both;
+            margin-top:10px;
+            background: white;
+            border-radius:10px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            width:560px;
+        }
+        #similar .content{
+            padding:20px;
+        }
+        #similar .similar-item{
+            display:inline-block;
+            width:30%;
+            text-align:center;
+            margin-right:10px;
+        }
+        .similar-item img{
+            display:block;
+            margin:5px auto;
+            max-width:88px;
+        }
+        .similar-item a.similar-title{
+            display:block;
+            height:30px;
+        }
+        .sp #similar{
+        display:none;
+        }
+    </style>
+
+
+    <div id = "sidebar">
+
+        
+
+        <div class = "content">
+            <span class="standardFontSize"> 
+
+<center>
+
+<img src = "/review/solar-system-formation/in-a-snap.en.png" width = "200" style="max-width:100%;" alt = "space place in a snap logo.">
+
+<h3  class="Quicksand">Quick and fun movies that answer big science questions!</h3>
+
+<br>
+<div style="background-color:beige; width:200px; max-width:100%; box-shadow:2px 2px 2px black; padding:5px; border-radius:5px;">
+<p><strong>Learn more about GPS and how it works by checking out <a href="/gps" style="color:darkblue; display:block">How does GPS work?</a></strong></p></div>
+<br>
+
+</center>
+
+</span>
+        </div>
+
+    </div>
+    <div id = "similar">
+        <div class = 'content'>
+            <h3 class="Quicksand">If you liked this, you may like:</h3>
+<div class = 'similar-item'>
+    <a href = '/gps'><img src = "/resources/icons/gps.en.png" alt = "Similar Item 1 : How Does GPS Work?"></a>
+    <a class = 'similar-title' href = '/gps'>How Does GPS Work?</a>
+</div>
+<div class = 'similar-item'>
+    <a href = '/birds'><img src = "/resources/icons/birds.en.png" alt = "Similar Item 1 : Tired  travelers"></a>
+    <a class = 'similar-title' href = '/birds'>Tired  travelers</a>
+</div>
+<div class = 'similar-item'>
+    <a href = '/topomap-earth'><img src = "/resources/icons/topomap-earth.en.jpg" alt = "Similar Item 1 : Building a 3-D Map of Earth from Space!"></a>
+    <a class = 'similar-title' href = '/topomap-earth'>Building a 3-D Map of Earth from Space!</a>
+</div>
+
+        </div>
+    </div>
+    <div class = "clearfix"></div>
+</div>
+<footer>
+    
+    <div id = "skinny-footer">
+
+    <span class = "footer-links">
+        <a href="/about-us">About Us</a>
+        <a href= "https://www.nasa.gov/about/highlights/HP_Privacy.html" target="_blank">Privacy Policy</a>
+        <a href="/image-use">Image Use</a>
+    </span>
+
+    
+
+    <span class = "webmaster">NASA Official: Kristen Erickson</span>
+    <span class = "webmaster">Program Manager: Heather Doyle</span>
+    <span class = "contact"><a id = 'mail-link' href = "spaceplace.nasa.gov">Contact NASA Space Place</a></span>
+    <span class = "last-updated">
+        Last Updated: September 23rd, 2021    </span>
+    <script>
+        var prefix = "mail";
+        prefix = prefix + "to:";
+        prefix = prefix + "info";
+        prefix = prefix + "@";
+        $("#mail-link").attr('href', prefix + $('#mail-link').attr('href'));
+    </script>
+</div></footer>
+
+  </div> <!-- end of #container -->
+
+
+
+
+
+  <div class = "left-tray" id = "left-tray">
+    <div class = 'tab'>
+        <a href = "#left-tray" class = "more">More</a>
+        <a href = "#" class = "less">Less</a>
+    </div>
+    <div class = "tray-bg"></div>
+    <div class = 'content'>
+        <nav>
+            <h3>By Subject</h3>
+            <ul>
+                <li><a href = "/menu/space">Space</a></li>
+                <li><a href = "/menu/sun">Sun</a></li>
+                <li><a href = "/menu/earth">Earth</a></li>
+                <li><a href = "/menu/solar-system">Solar System</a></li>
+                <li><a href = "/menu/people-and-technology">People & Technology</a></li>
+                <li><a href = "/menu/parents-and-educators">Parents & Educators</a></li>
+            </ul>
+            <h3>By Type</h3>
+            <ul>
+                <li><a href = "/menu/explore">Explore</a></li>
+                <li><a href = "/menu/do">Do</a></li>
+                <li><a href = "/menu/play">Play</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+</div>
+
+<div class = "right-tray" id = "right-tray">
+    <div class = 'tab'>
+        <a href = "#right-tray" class = "more">More</a>
+        <a href = "#" class = "less">Less</a>
+    </div>
+    <div class = "tray-bg"></div>
+    <div class = "content sidebar">
+        <span class="standardFontSize"> 
+
+<center>
+
+<img src = "/review/solar-system-formation/in-a-snap.png" width = "200" style="max-width:100%;" alt = "space place in a snap logo.">
+
+<h3  class="Quicksand">Quick and fun movies that answer big science questions!</h3>
+
+<br>
+<div style="background-color:beige; width:200px; max-width:100%; box-shadow:2px 2px 2px black; padding:5px; border-radius:5px;">
+<p><strong>Learn more about GPS and how it works by checking out <a href="/gps" style="color:darkblue; display:block">How does GPS work?</a></strong></p></div>
+<br>
+
+</center>
+
+</span>    </div>
+</div>
+
+
+
+  <!--[if lt IE 7 ]>
+    <script src="js/dd_belatedpng.js?v=1"></script>
+  <![endif]-->
+
+  <!-- <script src="/js/profiling/yahoo-profiling.min.js?v=1"></script>
+  <script src="/js/profiling/config.js?v=1"></script> -->
+  <script src="/js/script-ck.js?v=6"></script>
+
+  
+  
+  <!--<script id="_fed_an_js_tag" type="text/javascript" src="/js/uncompressed/federatedanalytics.all.min.js?agency=NASA&subagency=JPL-Spaceplace"></script>-->
+<!-- <script src = "/js/uncompressed/omniture.js"></script>   -->
+<!--
+<script language="JavaScript" type="text/javascript">
+s.pageName="How Does GPS Work?"
+s.channel="people-and-technology"
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//-->
+<!-- </script> -->
+
+<script id="_fed_an_ua_tag" src="//dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NASA&pua=UA-15623173-3&subagency=JPL-Spaceplace&dclink=true&sp=search,s"></script>
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	
+	ga('create', 'UA-15623173-3', 'auto');
+	ga('require', 'linkid');
+	//ga('send', 'pageview');
+
+</script>
+
+<script>
+	
+var hasScrolled25 = false;
+var hasScrolled50 = false;
+var hasScrolled75 = false;
+var hasScrolled90 = false;
+	
+document.addEventListener('scroll', function(){
+ 
+    var h =  document.documentElement,
+        b =  document.body,
+        st =  'scrollTop',
+        sh =  'scrollHeight';
+ 
+    var percent = parseInt ( (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
+
+	if (percent >= 25 && !hasScrolled25)
+	{
+		ga('send', 'event', 'Scrolling', 'moreThan25%', window.location.href, { 'nonInteraction': 1 });
+		hasScrolled25 = true;
+	}
+	else if (percent >= 50 && !hasScrolled50)
+	{
+		ga('send', 'event', 'Scrolling', 'moreThan50%', window.location.href, { 'nonInteraction': 1 });
+		hasScrolled50 = true;
+	}
+	else if (percent >= 75 && !hasScrolled75)
+	{
+		ga('send', 'event', 'Scrolling', 'moreThan75%', window.location.href, { 'nonInteraction': 1 });
+		hasScrolled75 = true;
+	}
+	else if (percent >= 90 && !hasScrolled90)
+	{
+		ga('send', 'event', 'Scrolling', 'moreThan90%', window.location.href, { 'nonInteraction': 1 });
+		hasScrolled90 = true;
+	}
+	
+});
+ 
+</script>
+
+
+</body>
+</html>
