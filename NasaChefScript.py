@@ -98,8 +98,14 @@ class NasaChefScript(SushiChef):
             dict_topic[link.text] = {}
             res = SESSION.get(f'{STATIC_URL}/{link["href"]}', stream=True)
             page_tab = BeautifulSoup(res.text, 'html5lib')
-            page_content = page_tab.find_all('li')
+            page_content_out = page_tab.find_all('li', {'class': 'out'})
+
+            for content in page_content_out:
+                content.extract()
+
+            page_content = page_tab.find_all('li', {'class': ""})
             # nasa_topic = nodes.TopicNode(source_id=f'{STATIC_URL}_{link.text}', title=link.text)
+
             for li in page_content:
                 page_url = None
                 dict_files = {}
@@ -122,7 +128,6 @@ class NasaChefScript(SushiChef):
                     if link.text in dict_topic:
                         if not dict_topic.get(link.text).get(page_url):
                             dict_topic.get(link.text)[page_url] = dict_files
-
         return dict_topic
 
     def construct_channel(self, *args, **kwargs):
@@ -157,7 +162,6 @@ class NasaChefScript(SushiChef):
             for tag in tags:
                 tag.decompose()
             # for link in bs_page.find_all("a"):
-            #     print(link.findParent)
             #     link.decompose()
             # for header in bs_page.find_all('h3', {'class': 'Quicksand'}):
             #     header.decompose()
@@ -202,6 +206,7 @@ class NasaChefScript(SushiChef):
                     page_path = f'{STATIC_URL}{dict_topic.get("page_url")}'
                 else:
                     page_path = dict_topic.get('page_url')
+
                 zip_dir = self.create_zip_foreach_page(page_path, dict_topic.get('name'))
                 html_file = files.HTMLZipFile(path=zip_dir)
 
@@ -232,6 +237,7 @@ if __name__ == '__main__':
     # This code runs when sushichef.py is called from the command line
     chef = NasaChefScript()
     chef.main()
+
     # fulldestpath = "chefdata\\archive_Build_a_model_spacecraft_to_explore_the_solar_system_\\fonts.googleapis.com\\"
     # os.makedirs(fulldestpath, exist_ok=True)
     #
