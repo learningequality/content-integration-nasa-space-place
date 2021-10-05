@@ -104,7 +104,6 @@ class NasaChefScript(SushiChef):
                 content.extract()
 
             page_content = page_tab.find_all('li', {'class': ""})
-            # nasa_topic = nodes.TopicNode(source_id=f'{STATIC_URL}_{link.text}', title=link.text)
 
             for li in page_content:
                 page_url = None
@@ -161,10 +160,22 @@ class NasaChefScript(SushiChef):
             tags = bs_page.find_all('header')
             for tag in tags:
                 tag.decompose()
-            # for link in bs_page.find_all("a"):
-            #     link.decompose()
-            # for header in bs_page.find_all('h3', {'class': 'Quicksand'}):
-            #     header.decompose()
+
+            for headless in (li for li in bs_page.find_all('li') if li.find('a')):
+                headless.decompose()
+
+            for div in bs_page.find_all('div', {'id': 'similar'}):
+                div.decompose()
+
+            for link in bs_page.find_all("a"):
+                link.decompose()
+
+            h3_tags = bs_page.find_all('h3')
+            for tag in h3_tags:
+                if "Related Resources for Educators" in tag.text:
+                    tag.decompose()
+                elif "Interested in learning more" in tag.text:
+                    tag.decompose()
 
     def create_zip_foreach_page(self, url_path, name):
         client = downloader.ArchiveDownloader(f'{ARCHIVE_FOLDER}')
@@ -237,119 +248,3 @@ if __name__ == '__main__':
     # This code runs when sushichef.py is called from the command line
     chef = NasaChefScript()
     chef.main()
-
-    # fulldestpath = "chefdata\\archive_Build_a_model_spacecraft_to_explore_the_solar_system_\\fonts.googleapis.com\\"
-    # os.makedirs(fulldestpath, exist_ok=True)
-    #
-    # print(os.path.exists('chefdata\\archive_Build_a_model_spacecraft_to_explore_the_solar_system_\\fonts.googleapis.com\\css2_family_Bigelow+Rules_display_swap'))
-
-    # os.makedirs('chefdata\\archive_Build_a_model_spacecraft_to_explore_the_solar_system_\\fonts.googleapis.com\\css2_family_Bigelow+Rules_display_swap', exist_ok=True)
-    #
-    # url_path = 'http://spaceplace.nasa.gov'
-    # url_path = 'https://spaceplace.nasa.gov/moon-phases/en/'
-
-#     def remove_tags(bs_page):
-#         if bs_page:
-#             tags = bs_page.find_all('header')
-#             for tag in tags:
-#                 tag.decompose()
-#             # for link in bs_page.find_all("a"):
-#             #     print(link.findParent)
-#             #     link.decompose()
-#             # for header in bs_page.find_all('h3', {'class': 'Quicksand'}):
-#             #     header.decompose()
-#
-#
-#     def download_convert_image_to_jpg(file_url):
-#         folder_dir_path = os.path.join(IMAGE_FOLDER)
-#         if not os.path.exists(folder_dir_path):
-#             os.makedirs(folder_dir_path)
-#         file_name = file_url.split('/')[-1]
-#         new_name = file_name.split('.')[0]
-#         orig_path = os.path.join(folder_dir_path, f'{new_name}.jpg')
-#         if not os.path.exists(orig_path):
-#             response = SESSION.get(file_url, stream=True)
-#             with open(orig_path, 'wb') as pdf_file:
-#                 pdf_file.write(response.content)
-#         file = Image.open(orig_path)
-#         rgb_image = file.convert('RGB')
-#         rgb_image.save(f'{orig_path}.jpg')
-#         return orig_path
-#
-#
-#     def scraping_nasa():
-#         response = SESSION.get(STATIC_URL)
-#         page = BeautifulSoup(response.text, 'html5lib')
-#         lst_nav_items = page.find_all('a', {'class': 'navItem'})
-#         dict_topic = {}
-#         for link in lst_nav_items:
-#             dict_topic[link.text] = {}
-#             res = SESSION.get(f'{STATIC_URL}/{link["href"]}', stream=True)
-#             page_tab = BeautifulSoup(res.text, 'html5lib')
-#             page_content = page_tab.find_all('li')
-#             # nasa_topic = nodes.TopicNode(source_id=f'{STATIC_URL}_{link.text}', title=link.text)
-#             for li in page_content:
-#                 page_url = None
-#                 dict_files = {}
-#                 if li.find('span', {'class': 'play'}):
-#                     continue
-#                 if li.find('img'):
-#                     image_url = li.find('img')['src']
-#                     dict_files['image_url'] = f'{STATIC_URL}{image_url}'
-#                 if li.find('a'):
-#                     page_url = li.find('a')['href']
-#                     dict_files['page_url'] = page_url
-#                 if li.find('p'):
-#                     name = li.find('p').text
-#                     dict_files['name'] = s = re.sub('[^0-9a-zA-Z]+', '_', name)
-#                 if dict_files and dict_files.get('name') and dict_files.get('image_url'):
-#                     if dict_files.get('image_url').endswith('.gif'):
-#                         orig_path = download_convert_image_to_jpg(dict_files.get('image_url'))
-#                         dict_files['image_url'] = orig_path
-#                     if link.text in dict_topic:
-#                         if not dict_topic.get(link.text).get(page_url):
-#                             dict_topic.get(link.text)[page_url] = dict_files
-#
-#         return dict_topic
-#
-#
-#     def create_zip_page(url_path, name):
-#         client = downloader.ArchiveDownloader(ARCHIVE_FOLDER)
-#
-#         client.get_page(url_path, refresh=True)
-#         zip_dir_page = client.create_zip_dir_for_page(url_path)
-#         index_path = client.get_relative_index_path(url_path)
-#
-#         with open(os.path.join(zip_dir_page, index_path), 'rb+') as f:
-#             page = f.read()
-#             bs_page = BeautifulSoup(page, 'html.parser')
-#             remove_tags(bs_page)
-#             f.close()
-#
-#         with open(os.path.join(zip_dir_page, index_path), 'wb+') as f:
-#             f.write(bs_page.prettify('utf-8'))
-#             f.close()
-#
-#         entrypoint = client.get_relative_index_path(url_path)
-#         zip_dir = zip.create_predictable_zip(zip_dir_page, entrypoint=entrypoint)
-#         zip_filename = os.path.join(ZIP_DIR, "{}.zip".format(name))
-#         #
-#         os.makedirs(os.path.dirname(zip_filename), exist_ok=True)
-#         if os.path.exists(zip_filename):
-#             os.remove(zip_filename)
-#         os.rename(zip_dir, zip_filename)
-#
-#
-#
-# dict_content = scraping_nasa()
-#
-# for key in dict_content:
-#     dict_pages = dict_content.get(key)
-#     for key_page in dict_pages:
-#         dict_page = dict_pages.get(key_page)
-#         if dict_page.get('page_url'):
-#             if not dict_page.get('page_url').startswith('http'):
-#                 page_path = f'{STATIC_URL}{dict_page.get("page_url")}'
-#             else:
-#                 page_path = dict_page.get('page_url')
-#             create_zip_page(page_path, dict_page.get('name'))
